@@ -1,0 +1,21 @@
+import csv
+
+with open('dublinbikes_2020.csv', 'r') as fin, open('dataset1.csv', 'w', newline='') as fout1, open('dataset2.csv', 'w', newline='') as fout2:
+
+    # define reader and writer objects
+    reader = csv.reader(fin, skipinitialspace=True)
+    writer1 = csv.writer(fout1, delimiter=',')
+    writer2 = csv.writer(fout2, delimiter=',')
+
+    # write headers
+    headers = next(reader)
+    writer1.writerow(headers)
+    writer2.writerow(headers)
+
+    # iterate and write rows based on condition
+    for i in reader:
+        if int(i[0]) == 93:
+            writer1.writerow(i)
+        elif int(i[0]) == 34:
+            writer2.writerow(i)
+ #and i[1][15] == '0'
